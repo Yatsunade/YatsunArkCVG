@@ -16,18 +16,19 @@
     }
 
     body::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background-image: url('https://yatsunark-cvg.netlify.app/images/tropical_background.png.png');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      filter: blur(6px);
-      transform: scale(1.05);
-      border: 5px solid red;
-      z-index: -2;
-    }
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url('images/tropical_background.png.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1;
+  filter: none;
+  transform: none;
+  border: 5px solid red;
+}
+
 
     body::after {
       content: "";
