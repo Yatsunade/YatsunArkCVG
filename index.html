@@ -15,19 +15,19 @@
       background: #000;
     }
 
-body::before {
-  content: "";
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background-image: url('images/tropical_background.png.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  filter: blur(6px);
-  z-index: -1;
-  transform: scale(1.05);
-  border: 5px solid red;
- }
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: url('images/tropical_background.png.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      filter: blur(6px);
+      transform: scale(1.05);
+      border: 5px solid red;
+      z-index: -2;
+    }
 
     body::after {
       content: "";
@@ -35,6 +35,11 @@ body::before {
       top: 0; left: 0; right: 0; bottom: 0;
       background-color: rgba(0, 0, 0, 0.35);
       z-index: -1;
+    }
+
+    main, header, footer, .lang-selector {
+      position: relative;
+      z-index: 1;
     }
 
     .lang-selector {
@@ -143,8 +148,7 @@ body::before {
     <h1 id="title-main">Conditions Générales de Vente</h1>
   </header>
 
-  <main id="content-main">
-  </main>
+  <main id="content-main"></main>
 
   <footer>
     <a href="https://discord.gg/aJa4UgJmCR" target="_blank" rel="noopener noreferrer">
