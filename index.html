@@ -116,16 +116,14 @@
       text-align: center;
       padding: 20px;
       margin-top: 40px;
+      color: #aaa;
     }
 
     footer img {
       width: 48px;
       height: 48px;
-    }
-
-    footer p {
-      color: #aaa;
-      margin-top: 8px;
+      vertical-align: middle;
+      margin-right: 8px;
     }
   </style>
 </head>
@@ -144,60 +142,14 @@
   </header>
 
   <main id="content-main">
-    <h2>🛑 Politique de remboursement</h2>
-    <p>
-      Les produits numériques et les services personnalisés ne sont ni remboursables ni échangeables une fois la commande traitée ou livrée.
-      <br>En cas de problème, merci de contacter un administrateur via notre serveur Discord.
-    </p>
-
-    <h2>🚚 Livraison</h2>
-    <p>
-      Les récompenses sont livrées manuellement en jeu (Ark: Survival Ascended) après validation.
-      <br><strong>Délai estimé :</strong> sous 24 à 48h.
-    </p>
-    <ul>
-      <li>Vous devez avoir rejoint le serveur Discord</li>
-      <li>Fournir une preuve de paiement</li>
-      <li>Préciser le jour et l’heure souhaités pour la livraison</li>
-    </ul>
-
-    <h2>📄 Conditions de licence</h2>
-    <p>
-      Les produits proposés sont destinés à un usage personnel uniquement sur le cluster Yatsun’Ark PvE.
-      <br>Toute revente, duplication ou distribution non autorisée est interdite.
-    </p>
-
-    <h2>💬 Contact</h2>
-    <p>
-      Pour toute question ou souci avec une commande, utilisez notre serveur Discord :
-      <br>👉 <a href="https://discord.gg/aJa4UgJmCR" target="_blank" rel="noopener noreferrer">discord.gg/aJa4UgJmCR</a>
-    </p>
-
-    <h2>⚖️ Mentions légales</h2>
-    <p>
-      Éditeur du site : Yatsun'Ark<br>
-      Responsable de la publication : Yatsunade<br>
-      Adresse : Saint-Malo<br>
-      Contact email : <a href="mailto:yatsunade@gmail.com">yatsunade@gmail.com</a><br>
-      Hébergement : Netlify<br>
-    </p>
-
-    <h2>🔒 Politique de confidentialité</h2>
-    <p>
-      Nous collectons uniquement les données nécessaires au traitement des commandes (nom, email, preuve de paiement).
-      <br>Ces données sont conservées de manière sécurisée et ne sont jamais partagées avec des tiers.
-      <br>Conformément au RGPD, vous disposez d’un droit d’accès, de rectification et de suppression de vos données en nous contactant.
-    </p>
-    <p>
-      Ce site utilise des cookies essentiels au bon fonctionnement, sans collecte de données personnelles à des fins marketing.
-    </p>
+    <!-- Le contenu sera injecté ici -->
   </main>
 
   <footer>
-    <a href="https://discord.gg/aJa4UgJmCR" target="_blank">
+    <a href="https://discord.gg/aJa4UgJmCR" target="_blank" rel="noopener noreferrer">
       <img src="images/discord_icon.png.png" alt="Discord" />
     </a>
-    <p>Rejoins la communauté Yatsun'Ark sur Discord</p>
+    <span id="footer-text">Rejoins la communauté Yatsun'Ark sur Discord</span>
   </footer>
 
   <script>
@@ -252,7 +204,8 @@
           <p>
             Ce site utilise des cookies essentiels au bon fonctionnement, sans collecte de données personnelles à des fins marketing.
           </p>
-        `
+        `,
+        footerText: "Rejoins la communauté Yatsun'Ark sur Discord"
       },
       en: {
         titleMain: "Terms and Conditions of Sale",
@@ -304,7 +257,8 @@
           <p>
             This site uses essential cookies for proper functioning, without collecting personal data for marketing purposes.
           </p>
-        `
+        `,
+        footerText: "Join the Yatsun'Ark community on Discord"
       }
     };
 
@@ -312,11 +266,13 @@
     const languageSwitcher = document.getElementById('languageSwitcher');
     const titleMain = document.getElementById('title-main');
     const contentMain = document.getElementById('content-main');
+    const footerText = document.getElementById('footer-text');
 
     function updateLanguage(lang) {
       flagIcon.src = `images/${lang}.png`;
       titleMain.textContent = translations[lang].titleMain;
       contentMain.innerHTML = translations[lang].mainContent;
+      footerText.textContent = translations[lang].footerText;
       document.documentElement.lang = lang;
     }
 
