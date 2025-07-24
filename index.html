@@ -12,6 +12,7 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       color: #f0f0f0;
       overflow-x: hidden;
+      background: #000;
     }
 
     body::before {
@@ -32,6 +33,36 @@
       top: 0; left: 0; right: 0; bottom: 0;
       background: rgba(0, 0, 0, 0.5);
       z-index: -1;
+    }
+
+    .lang-selector {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0,0,0,0.6);
+      padding: 6px 10px;
+      border-radius: 8px;
+      border: 1px solid #00bfff;
+      z-index: 10;
+    }
+
+    .lang-selector img {
+      width: 24px;
+      height: 16px;
+      object-fit: cover;
+      border-radius: 2px;
+    }
+
+    .lang-selector select {
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      outline: none;
     }
 
     header {
@@ -58,16 +89,13 @@
       background-color: rgba(20, 20, 20, 0.85);
       border-radius: 12px;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+      color: #ddd;
+      font-size: 1.05rem;
     }
 
     h2 {
       color: #00bfff;
       margin-top: 30px;
-    }
-
-    p, ul {
-      color: #ddd;
-      font-size: 1.05rem;
     }
 
     ul {
@@ -102,12 +130,20 @@
   </style>
 </head>
 <body>
+  <div class="lang-selector">
+    <img id="flag-icon" src="images/fr.png" alt="Drapeau langue" />
+    <select id="languageSwitcher">
+      <option value="fr">FR</option>
+      <option value="en">EN</option>
+    </select>
+  </div>
+
   <header>
     <img src="images/Logo_Yatsu.png.png" alt="Logo Yatsun'Ark" />
-    <h1>Conditions Générales de Vente</h1>
+    <h1 id="title-main">Conditions Générales de Vente</h1>
   </header>
 
-  <main>
+  <main id="content-main">
     <h2>🛑 Politique de remboursement</h2>
     <p>
       Les produits numériques et les services personnalisés ne sont ni remboursables ni échangeables une fois la commande traitée ou livrée.
@@ -137,7 +173,6 @@
       <br>👉 <a href="https://discord.gg/aJa4UgJmCR" target="_blank" rel="noopener noreferrer">discord.gg/aJa4UgJmCR</a>
     </p>
 
-    <!-- Mentions légales -->
     <h2>⚖️ Mentions légales</h2>
     <p>
       Éditeur du site : Yatsun'Ark<br>
@@ -147,7 +182,6 @@
       Hébergement : Netlify<br>
     </p>
 
-    <!-- Politique de confidentialité -->
     <h2>🔒 Politique de confidentialité</h2>
     <p>
       Nous collectons uniquement les données nécessaires au traitement des commandes (nom, email, preuve de paiement).
@@ -165,5 +199,136 @@
     </a>
     <p>Rejoins la communauté Yatsun'Ark sur Discord</p>
   </footer>
+
+  <script>
+    const translations = {
+      fr: {
+        titleMain: "Conditions Générales de Vente",
+        mainContent: `
+          <h2>🛑 Politique de remboursement</h2>
+          <p>
+            Les produits numériques et les services personnalisés ne sont ni remboursables ni échangeables une fois la commande traitée ou livrée.
+            <br>En cas de problème, merci de contacter un administrateur via notre serveur Discord.
+          </p>
+
+          <h2>🚚 Livraison</h2>
+          <p>
+            Les récompenses sont livrées manuellement en jeu (Ark: Survival Ascended) après validation.
+            <br><strong>Délai estimé :</strong> sous 24 à 48h.
+          </p>
+          <ul>
+            <li>Vous devez avoir rejoint le serveur Discord</li>
+            <li>Fournir une preuve de paiement</li>
+            <li>Préciser le jour et l’heure souhaités pour la livraison</li>
+          </ul>
+
+          <h2>📄 Conditions de licence</h2>
+          <p>
+            Les produits proposés sont destinés à un usage personnel uniquement sur le cluster Yatsun’Ark PvE.
+            <br>Toute revente, duplication ou distribution non autorisée est interdite.
+          </p>
+
+          <h2>💬 Contact</h2>
+          <p>
+            Pour toute question ou souci avec une commande, utilisez notre serveur Discord :
+            <br>👉 <a href="https://discord.gg/aJa4UgJmCR" target="_blank" rel="noopener noreferrer">discord.gg/aJa4UgJmCR</a>
+          </p>
+
+          <h2>⚖️ Mentions légales</h2>
+          <p>
+            Éditeur du site : Yatsun'Ark<br>
+            Responsable de la publication : Yatsunade<br>
+            Adresse : Saint-Malo<br>
+            Contact email : <a href="mailto:yatsunade@gmail.com">yatsunade@gmail.com</a><br>
+            Hébergement : Netlify<br>
+          </p>
+
+          <h2>🔒 Politique de confidentialité</h2>
+          <p>
+            Nous collectons uniquement les données nécessaires au traitement des commandes (nom, email, preuve de paiement).
+            <br>Ces données sont conservées de manière sécurisée et ne sont jamais partagées avec des tiers.
+            <br>Conformément au RGPD, vous disposez d’un droit d’accès, de rectification et de suppression de vos données en nous contactant.
+          </p>
+          <p>
+            Ce site utilise des cookies essentiels au bon fonctionnement, sans collecte de données personnelles à des fins marketing.
+          </p>
+        `
+      },
+      en: {
+        titleMain: "Terms and Conditions of Sale",
+        mainContent: `
+          <h2>🛑 Refund Policy</h2>
+          <p>
+            Digital products and custom services are non-refundable and non-exchangeable once the order has been processed or delivered.
+            <br>If you encounter any problem, please contact an administrator via our Discord server.
+          </p>
+
+          <h2>🚚 Delivery</h2>
+          <p>
+            Rewards are manually delivered in-game (Ark: Survival Ascended) after validation.
+            <br><strong>Estimated time:</strong> within 24 to 48 hours.
+          </p>
+          <ul>
+            <li>You must have joined the Discord server</li>
+            <li>Provide proof of payment</li>
+            <li>Specify the desired day and time for delivery</li>
+          </ul>
+
+          <h2>📄 License Terms</h2>
+          <p>
+            The products offered are intended for personal use only on the Yatsun’Ark PvE cluster.
+            <br>Any unauthorized resale, duplication or distribution is prohibited.
+          </p>
+
+          <h2>💬 Contact</h2>
+          <p>
+            For any questions or issues with an order, use our Discord server:
+            <br>👉 <a href="https://discord.gg/aJa4UgJmCR" target="_blank" rel="noopener noreferrer">discord.gg/aJa4UgJmCR</a>
+          </p>
+
+          <h2>⚖️ Legal Notice</h2>
+          <p>
+            Site editor: Yatsun'Ark<br>
+            Publication manager: Yatsunade<br>
+            Address: Saint-Malo<br>
+            Contact email: <a href="mailto:yatsunade@gmail.com">yatsunade@gmail.com</a><br>
+            Hosting: Netlify<br>
+          </p>
+
+          <h2>🔒 Privacy Policy</h2>
+          <p>
+            We only collect the necessary data to process orders (name, email, proof of payment).
+            <br>This data is stored securely and never shared with third parties.
+            <br>In accordance with GDPR, you have the right to access, rectify, and delete your data by contacting us.
+          </p>
+          <p>
+            This site uses essential cookies for proper functioning, without collecting personal data for marketing purposes.
+          </p>
+        `
+      }
+    };
+
+    const flagIcon = document.getElementById('flag-icon');
+    const languageSwitcher = document.getElementById('languageSwitcher');
+    const titleMain = document.getElementById('title-main');
+    const contentMain = document.getElementById('content-main');
+
+    function updateLanguage(lang) {
+      flagIcon.src = `images/${lang}.png`;
+      titleMain.textContent = translations[lang].titleMain;
+      contentMain.innerHTML = translations[lang].mainContent;
+      document.documentElement.lang = lang;
+    }
+
+    const savedLang = localStorage.getItem('lang') || 'fr';
+    languageSwitcher.value = savedLang;
+    updateLanguage(savedLang);
+
+    languageSwitcher.addEventListener('change', (e) => {
+      const newLang = e.target.value;
+      localStorage.setItem('lang', newLang);
+      updateLanguage(newLang);
+    });
+  </script>
 </body>
 </html>
